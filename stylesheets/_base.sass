@@ -1,0 +1,136 @@
+// MIXINS
+
+@mixin border-box
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+
+@mixin noOuterDimensions
+    margin: 0
+    border: 0 none
+    outline: 0 none
+    padding: 0
+
+@mixin resetList($display: block)
+    @include noOuterDimensions
+    display: $display
+    list-style: none
+
+@mixin roundedCorners($radius: 3px)
+    border-radius: $radius
+    -moz-border-radius: $radius
+    -webkit-border-radius: $radius
+    background-clip: padding-box
+    -moz-background-clip: padding-box
+    -webkit-background-clip: padding-box
+
+@mixin text-shadow($settings: 1px 1px white)
+    text-shadow: $settings
+    -moz-text-shadow: $settings
+    -webkit-text-shadow: $settings
+
+@mixin shadow($settings)
+    box-shadow: $settings
+    -moz-box-shadow: $settings
+    -webkit-box-shadow: $settings
+
+@mixin user-select($val)
+    -webkit-user-select: $val
+    -moz-user-select: $val
+    -ms-user-select: $val
+    user-select: $val
+
+@mixin backgroundGradient($settings)
+    background-image: linear-gradient($settings)
+    background-image: -o-linear-gradient($settings)
+    background-image: -ms-linear-gradient($settings)
+    background-image: -moz-linear-gradient($settings)
+    background-image: -webkit-linear-gradient($settings)
+
+@mixin linearGradient($top, $bottom)
+    background: $top
+    background: -moz-linear-gradient(top,  $top 0%, $bottom 100%)
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom))
+    background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%)
+    background: -o-linear-gradient(top,  $top 0%,$bottom 100%)
+    background: -ms-linear-gradient(top,  $top 0%,$bottom 100%)
+    background: linear-gradient(to bottom,  $top 0%,$bottom 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 )
+
+@mixin opacity($value)
+    opacity: $value
+    filter: unquote("alpha(opacity=#{($value * 100)})")
+
+@mixin placeholder
+    &::-webkit-input-placeholder
+        @content
+    &::-moz-placeholder
+        @content
+    &:-ms-input-placeholder
+        @content
+    &:-moz-placeholder
+        @content
+
+@mixin transition($property: all, $time: .5s)
+    // transition times
+    transition-duration: $time
+    -o-transition-duration: $time
+    -ms-transition-duration: $time
+    -moz-transition-duration: $time
+    -webkit-transition-duration: $time
+    // transition properties
+    transition-property: $property
+    -o-transition-property: $property
+    -ms-transition-property: $property
+    -moz-transition-property: $property
+    -webkit-transition-property: $property
+    // transition function
+    transition-timing-function: ease-in-out
+    -o-transition-timing-function: ease-in-out
+    -ms-transition-timing-function: ease-in-out
+    -moz-transition-timing-function: ease-in-out
+    -webkit-transition-timing-function: ease-in-out
+
+@mixin transform($transform)
+    transform: $transform
+    -moz-transform: $transform
+    -webkit-transform: $transform
+
+@mixin backgroundSize($tuplePercent)
+    background-size: $tuplePercent
+    -moz-background-size: $tuplePercent
+    -webkit-background-size: $tuplePercent
+
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "")
+    $index: str-index($string, $search)
+
+    @if $index
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace)
+
+    @return $string
+
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg)
+    $src: null
+
+    $extmods: (eot: "?",svg: "#" + str-replace($name, " ", "_"))
+    $formats: (otf: "opentype",ttf: "truetype")
+
+    @each $ext in $exts
+        $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext)
+        $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext)
+        $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma)
+
+    @font-face
+        font-family: quote($name)
+        font-style: $style
+        font-weight: $weight
+        src: $src

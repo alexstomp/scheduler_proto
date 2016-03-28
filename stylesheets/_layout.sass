@@ -1,0 +1,63 @@
+// LAYOUT RESET STYLES
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, a, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video
+    border: 0
+    font-size: 62.5%
+    list-style: none outside none
+    margin: 0
+    outline: 0
+    padding: 0
+    vertical-align: baseline
+    @media screen and (max-width: $small)
+        font-size: 57.5%
+
+*, *:before, *:after
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
+
+.clearfix
+    &:after
+        clear: both
+        content: ""
+        display: table
+
+// PAGE ELEMENTS & COMMON CLASSES
+
+html, body
+    margin: 0
+    padding: 0
+
+body
+    background: $bg
+    position: relative
+    overflow: hidden
+    width: 100%
+
+.header
+    height: 65px
+    left: 0
+    position: fixed
+    top: 0
+    width: 100vw
+    z-index: 500
+
+.content
+    min-height: calc(100vh - 70px)
+    overflow: auto
+    position: absolute
+    top: 100px
+    width: 100vw
+    z-index: 100
+
+// GREATER THAN MAX-WIDTH (HUGE DISPLAY)
+
+@media screen and (min-width: $max_width)
+
+// MEDIUM
+
+@media screen and (max-width: $medium)
+
+// SMALL
+
+@media screen and (max-width: $small)

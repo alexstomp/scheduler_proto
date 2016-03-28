@@ -1,0 +1,39 @@
+// sidebar
+
+.sidebar
+    +shadow(inset -4px 0 10px #303030)
+    background: $grey
+    .sidebar-logo
+        display: block
+        height: 80px
+        margin-bottom: 20px
+    .sidebar-modules
+        display: block
+        height: calc(100vh - 190px)
+        margin-bottom: 20px
+        .sidebar-module
+            border-left: 3px solid transparent
+            display: block
+            margin-bottom: 20px
+            padding: 10px 25px 10px 22px
+            width: 100%
+            img
+                opacity: 0.7
+                width: 30px
+            &:hover
+                img
+                    opacity: 1
+            &.active
+                border-left-color: $light_blue
+                img
+                    opacity: 1
+    .sidebar-account
+        display: block
+        height: 60px
+        padding: 10px 25px
+        img
+            opacity: 0.7
+            width: 30px
+        &:hover
+            img
+                opacity: 1

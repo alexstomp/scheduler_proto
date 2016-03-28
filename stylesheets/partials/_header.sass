@@ -1,0 +1,126 @@
+// header
+
+.header
+    background: $blue
+    border-bottom: 1px solid darken($blue, 5%)
+    display: block
+    .main-nav, .account-nav
+        display: inline-block
+        .nav-tab
+            +shadow(inset -1px 0 0 lighten($blue, 10%))
+            border-right: 1px solid darken($blue, 10%)
+            clear: none
+            float: left
+            height: 65px
+            margin: 0
+            padding: 12px 10px 10px
+            position: relative
+            width: auto
+            &.logo
+                padding-left: 66px
+            .tab-icon, .tab-logo
+                +text-shadow(1px 1px darken($blue, 10%))
+                color: white
+                font-size: 12px
+                float: left
+                line-height: 1.1rem
+                top: 10px
+                vertical-align: middle
+                width: 17px
+            .tab-logo
+                height: 41px
+                left: 10px
+                position: absolute
+                top: 12px
+                width: auto
+            .tab-name
+                +text-shadow(1px 1px darken($blue, 10%))
+                color: white
+                float: left
+                font-size: 1.2rem
+                font-weight: 200
+                letter-spacing: 0.05rem
+                line-height: 1.1rem
+                text-transform: uppercase
+            .tab-links
+                float: left
+                clear: left
+                margin-top: 13px
+                .tab-link
+                    +roundedCorners(2px)
+                    +text-shadow(1px 1px darken($blue, 10%))
+                    background: darken($blue, 10%)
+                    color: lighten($blue, 40%)
+                    font-size: 1.2rem
+                    font-weight: 100
+                    margin-right: 5px
+                    padding: 5px 7px
+                    &:last-child
+                        margin-right: 0
+                    &:hover, &.active
+                        background: darken($blue,15%)
+                        color: white
+            .tab-dropdown
+                background: white
+                border-left: 1px solid #e5e5e5
+                border-right: 1px solid #e5e5e5
+                display: none
+                right: 0
+                position: absolute
+                top: 100%
+                width: 150px
+                .tab-dropdown-item
+                    border-bottom: 1px solid #e5e5e5
+                    display: block
+                    width: 100%
+                    a
+                        color: #757575
+                        display: block
+                        font-size: 1.4rem
+                        padding: 12px 15px
+                        &:hover
+                            background: #F5F5F5
+            &:hover, &.active
+                +shadow(inset -1px 0 0 lighten($blue, 10%))
+                background: lighten($blue, 5%)
+                border-right-color: darken($blue, 15%)
+                cursor: pointer
+                .tab-dropdown
+                    display: inline-block
+    .account-nav
+        float: right
+        .nav-tab
+            +shadow(inset 1px 0 1px darken($blue, 10%))
+            border-left: 1px solid lighten($blue, 10%)
+            border-right: 0
+            padding: 14px 35px 12px 15px
+            .tab-meta
+                +text-shadow(1px 1px darken($blue, 10%))
+                color: white
+                clear: left
+                float: left
+                font-size: 1.3rem
+                font-weight: 200
+                margin-top: 10px
+            .icon-down
+                color: white
+                font-size: 1.3rem
+                line-height: 15px
+                position: absolute
+                right: 10px
+                top: 25px
+
+
+
+
+// GREATER THAN MAX-WIDTH (HUGE DISPLAY)
+
+@media screen and (min-width: $max_width)
+
+// MEDIUM
+
+@media screen and (max-width: $medium)
+
+// SMALL
+
+@media screen and (max-width: $small)
